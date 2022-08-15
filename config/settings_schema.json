@@ -1,0 +1,47 @@
+[ 
+  {
+    "name": "theme_info",
+    "theme_name": "Lass Orchid",
+    "theme_author": "NotBaldrick",
+    "theme_version": "1.0.0",
+    "theme_documentation_url": "https://help.shopify.com/",
+    "theme_support_email": "Contact@NotBaldrick.com"
+  },
+  {
+    "name": "t:settings_schema.brand.name",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "t:settings_schema.brand.settings.favicon.label"
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.typography.name",
+    "settings": [
+      {
+        "type": "header",
+        "content": "t:settings_schema.typography.settings.header_headings.content"
+      },
+      {
+        "type": "font_picker",
+        "id": "fonts_header",
+        "default": "sans-serif",
+        "label": "t:settings_schema.typography.settings.fonts_header.label",
+        "info": "t:settings_schema.typography.settings.fonts_header.info"
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.typography.settings.header_body.content"
+      },
+      {
+        "type": "font_picker",
+        "id": "fonts_body",
+        "default": "sans-serif",
+        "label": "t:settings_schema.typography.settings.fonts_body.label",
+        "info": "t:settings_schema.typography.settings.fonts_body.info"
+      }
+    ]
+  }
+]

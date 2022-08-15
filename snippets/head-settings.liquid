@@ -1,0 +1,48 @@
+{% comment %} Style/Liquid Settings {% endcomment %}
+{%- liquid
+  assign font_header_bold = settings.fonts_header | font_modify: 'weight', 'bold'
+  assign font_body_bold = settings.fonts_body | font_modify: 'weight', 'bold'
+
+  assign font_header_italic= settings.fonts_header | font_modify: 'style', 'italic'
+  assign font_body_italic = settings.fonts_body | font_modify: 'style', 'italic'
+
+  assign font_header_bold_italic= font_header_bold | font_modify: 'style', 'italic'
+  assign font_body_bold_italic = font_body_bold | font_modify: 'style', 'italic'
+-%}
+
+<style>
+  {% comment %} Header font face {% endcomment %}
+  {{ settings.fonts_header | font_face: font_display: 'swap' }}
+  {{ font_header_bold | font_face: font_display: 'swap' }}
+  {{ font_header_italic | font_face: font_display: 'swap' }}
+  {{ font_header_bold_italic | font_face: font_display: 'swap' }}
+
+  {% comment %} Body font face {% endcomment %}
+  {{ settings.fonts_body | font_face: font_display: 'swap' }}
+  {{ font_body_bold | font_face: font_display: 'swap' }}
+  {{ font_body_italic | font_face: font_display: 'swap' }}
+  {{ font_body_bold_italic | font_face: font_display: 'swap' }}
+
+  {% comment %} Theme custom properties {% endcomment %}
+  :root {
+    --font-heading-family: {{ settings.fonts_header.family }}, {{ settings.fonts_header.fallback_families }};
+    --font-heading-style: {{ settings.fonts_header.style }};
+    --font-heading-weight: {{ settings.fonts_header.weight }};
+
+    --font-body-family: {{ settings.fonts_body.family }}, {{ settings.fonts_body.fallback_families }};
+    --font-body-style: {{ settings.fonts_body.style }};
+    --font-body-weight: {{ settings.fonts_body.weight }};
+  }
+
+  html, body {
+    font-family: var(--font-body-family) !important;
+    font-style: var(--font-body-style) !important;
+    font-weight: var(--font-body-weight) !important;
+  }
+
+  h1,h2,h3,h4,h5,h6 {
+    font-family: var(--font-heading-family) !important;
+    font-style: var(--font-heading-style) !important;
+    font-weight: var(--font-heading-weight) !important;
+  }
+</style>

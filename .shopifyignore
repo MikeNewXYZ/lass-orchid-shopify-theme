@@ -1,0 +1,15 @@
+# Dependencies
+
+node_modules
+package.json
+package-lock.json
+yarn.lock
+
+# Misc
+
+.history
+.prettierignore
+.gitignore
+tailwind.config.js
+.vscode
+src

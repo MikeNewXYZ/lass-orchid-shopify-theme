@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    {%- unless settings.fonts_header.system? and settings.fonts_body.system? -%}
+    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    {%- endunless -%}
+
+    {%- unless settings.fonts_header.system? -%}
+    <link rel="preload" href="{{ settings.fonts_header | font_url }}" type="font/woff2" as="font" crossorigin>
+    {%- endunless -%}
+
+    {%- unless settings.fonts_body.system? -%}
+    <link rel="preload" href="{{ settings.fonts_body | font_url }}" type="font/woff2" as="font" crossorigin>
+    {%- endunless -%}
+
+    <link rel="icon" type="image/x-icon" href="{{ settings.favicon | img_url: 'small' }}">
+
+    <title>{{ shop.name }}</title>
+
+    {%- liquid render 'head-settings' -%}
+
+    {{ 'main.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'main.js' | asset_url }}"></script>
+
+    {{ content_for_header }}
+  </head>
+  <body>
+
+    {% section 'header' %}
+
+    <main>
+      {{ content_for_layout }}
+    </main>
+    
+    {% section 'footer' %}
+
+  </body>
+</html>
