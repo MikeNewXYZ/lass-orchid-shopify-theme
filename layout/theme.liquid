@@ -25,7 +25,7 @@
     {%- liquid render 'head-settings' -%}
 
     {{ 'main.css' | asset_url | stylesheet_tag }}
-    <script src="{{ 'main.js' | asset_url }}"></script>
+    <script src="{{ 'alpinejs.min.js' | asset_url }}" defer></script>
 
     {{ content_for_header }}
   </head>
