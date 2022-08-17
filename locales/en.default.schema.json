@@ -30,7 +30,25 @@
   },
   "sections": {
     "header": {
-      "name": "Header"
+      "name": "Header",
+      "settings": {
+        "navigation_header": {
+          "content": "Navigation",
+          "info": "Change the menu used for each of the navigation elements."
+        },
+        "desktop_nav_link_list": {
+          "label": "Desktop Navigation",
+          "info": "Navigation menu that appears below the heading on desktop screen sizes."
+        },
+        "desktop_side_nav_link_list": {
+          "label": "Desktop Side Navigation",
+          "info": "Navigation menu that appears left of the heading on desktop screen sizes."
+        },
+        "mobile_nav_link_list": {
+          "label": "Mobile Navigation",
+          "info": "Navigation menu that appears left of the heading, accessed with the menu button, on mobile screen sizes."
+        }
+      }
     },
     "footer": {
       "name": "Footer"

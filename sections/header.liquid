@@ -1,8 +1,136 @@
-<h1>Header</h1>
+<div x-data="header">
+  <div class="flex flex-col gap-2 items-center p-2 bg-base-200">
+    <div class="w-full flex flex-row gap-4 justify-between items-center lg:items-start">
+      <div class="flex-1">
+        <nav class="hidden lg:block">
+          <ul class="flex flex-row gap-4">
+            {% for link in section.settings.desktop_side_nav_link_list.links %}
+              <li class="text-xl font-semibold hover:scale-105 transition-transform">
+                <a
+                  {% if link.active %}
+                    class="underline"
+                  {% endif %}
+
+                  href="{{ link.url }}"
+                >
+                  {{ link.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+
+        <div class="block lg:hidden">
+          <button
+            class="btn btn-ghost btn-circle btn-sm md:btn-base"
+            @click="showMobileNav = true"
+          >
+            {% render 'icons',
+              type: 'menu'
+            %}
+          </button>
+        </div>
+      </div>
+
+      <h1 class="flex-[3] text-2xl sm:text-4xl lg:text-5xl font-semibold text-center">
+        {{ shop.name }}
+      </h1>
+
+      <div class="flex-1 flex gap-2 justify-end">
+        <button
+          class="btn btn-ghost btn-circle btn-sm md:btn-base"
+          @click="showSearchModal = true"
+        >
+          {% render 'icons',
+            type: 'search'
+          %}
+        </button>
+
+        <button
+          class="btn btn-ghost btn-circle btn-sm md:btn-base"
+          @click="$store.cart.showCartDrawer = true"
+        >
+          {% render 'icons',
+            type: 'shopping-cart'
+          %}
+        </button>
+      </div>
+    </div>
+
+
+    <nav class="hidden lg:block">
+      <ul class="flex flex-row flex-wrap justify-center gap-4 text-xl p-2">
+        {% render 'header-desktop-nav' %}
+      </ul>
+    </nav>
+  </div>
+
+  {% render 'mini-header' %}
+
+  {% render 'header-mobile-nav' %}
+  
+  {% render 'header-cart-drawer' %}
+
+  {% render 'header-search-modal' %}
+</div>
+
+<script>
+document.addEventListener("alpine:init", () => {
+  Alpine.data("header", () => ({
+    showMobileNav: false,
+    showSearchModal: false,
+    showMiniHeader: false,
+    init() {
+      this.toggleMiniHeader()
+    },
+    toggleMiniHeader() {
+      window.addEventListener("scroll", () => {
+        const headerHeight = this.$el.clientHeight
+        const scrollPos = window.scrollY
+
+        if (scrollPos >= headerHeight) {
+          if (this.showMiniHeader) return
+          this.showMiniHeader = true
+        } else {
+          if (!this.showMiniHeader) return
+          this.showMiniHeader = false
+        }
+      })
+    }
+  }))
+})
+</script>
 
 {% schema %}
 {
   "name": "t:sections.header.name",
-  "tag": "header"
+  "tag": "header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.header.settings.navigation_header.content",
+      "info": "t:sections.header.settings.navigation_header.info"
+    },
+    {
+      "type": "link_list",
+      "id": "desktop_nav_link_list",
+      "label": "t:sections.header.settings.desktop_nav_link_list.label",
+      "info": "t:sections.header.settings.desktop_nav_link_list.info",
+      "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "desktop_side_nav_link_list",
+      "label": "t:sections.header.settings.desktop_side_nav_link_list.label",
+      "info": "t:sections.header.settings.desktop_side_nav_link_list.info"
+    },
+    {
+      "type": "link_list",
+      "id": "mobile_nav_link_list",
+      "label": "t:sections.header.settings.mobile_nav_link_list.label",
+      "info": "t:sections.header.settings.mobile_nav_link_list.info",
+      "default": "main-menu"
+    }
+  ]
 }
 {% endschema %}

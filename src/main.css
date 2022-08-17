@@ -6,3 +6,32 @@
 [x-cloak] {
   display: none;
 }
+
+/* ANCHOR: Header Navigation */
+.header-nav {
+  @apply flex flex-row gap-6 text-xl;
+}
+
+.header-nav > li > .header-nav-active {
+  @apply font-semibold underline;
+}
+
+.header-nav > li {
+  @apply transition-transform;
+}
+
+.header-nav > li:hover {
+  @apply font-semibold scale-105 transition-transform;
+}
+
+.header-nav > li > .header-nav-parent {
+  @apply flex flex-row gap-1 items-center cursor-pointer;
+}
+
+.header-nav > li > .header-nav-parent-wrapper {
+  @apply relative;
+}
+
+.header-nav > li > .header-nav-child {
+  @apply absolute mt-2 flex flex-col gap-2 text-left p-4 bg-base-200;
+}

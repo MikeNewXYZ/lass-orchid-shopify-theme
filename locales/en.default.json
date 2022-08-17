@@ -2,6 +2,24 @@
   "sections": {
     "hero": {
       "main_text": "Ya alreet mate, I'm meant to be a hero apparently."
+    },
+    "header": {
+      "header_mobile_nav": {
+        "back_button": "Go Back"
+      },
+      "header_cart_drawer": {
+        "heading": "Your Cart",
+        "remove_button": "Remove",
+        "total_price": "Total:",
+        "checkout_button": "Checkout"
+      },
+      "header_search_modal": {
+        "search_input_placeholder": "Search For a Product!",
+        "loading": "Loading...",
+        "no_search": "Try Searching Something!",
+        "no_results_heading": "Sorry No Products Could Be Found",
+        "no_results_info": "Try searching something else"
+      }
     }
   }
 }

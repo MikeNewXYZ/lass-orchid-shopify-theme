@@ -1,0 +1,50 @@
+<template x-teleport="body">
+  <header
+    class="z-30 fixed bottom-0 lg:top-0 left-0 w-full h-fit bg-base-300 flex gap-2 justify-between items-center shadow-md"
+    x-show="showMiniHeader"
+    x-cloak
+  >
+    <div>
+      <div class="block lg:hidden">
+        <button
+          class="btn btn-ghost btn-circle btn-base"
+          @click="showMobileNav = true"
+        >
+          {% render 'icons',
+            type: 'menu',
+            class: 'w-8 h-8'
+          %}
+        </button>
+      </div>
+
+      <nav class="hidden lg:block">
+        <ul class="flex gap-4 text-xl p-2">
+          {% render 'header-desktop-nav' %}
+        </ul>
+      </nav>
+    </div>
+
+
+    <div class="flex gap-2">
+      <button
+        class="btn btn-ghost btn-circle btn-base"
+        @click="showSearchModal = true"
+      >
+        {% render 'icons',
+          type: 'search',
+          class: 'w-8 lg:w-5 h-8 lg:h-5'
+        %}
+      </button>
+
+      <button
+        class="btn btn-ghost btn-circle btn-base"
+        @click="$store.cart.showCartDrawer = true"
+      >
+        {% render 'icons',
+          type: 'shopping-cart',
+          class: 'w-8 lg:w-5 h-8 lg:h-5'
+        %}
+      </button>
+    </div>
+  </header>
+</template>

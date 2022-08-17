@@ -1,0 +1,130 @@
+<template x-teleport="body">
+  <div
+    class="z-50 fixed inset-0 w-full h-screen pointer-events-none"
+    x-cloak
+    x-show="$store.cart.showCartDrawer"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-in duration-300"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+  >
+    <div
+      class="w-full h-full bg-neutral bg-opacity-30 pointer-events-auto"
+      @click="$store.cart.showCartDrawer = false"
+    ></div>
+
+    <div
+      class="ml-auto z-10 absolute inset-0 h-full w-full sm:w-[60%] md:w-[25rem] bg-base-200 pointer-events-auto flex flex-col"
+      x-show="$store.cart.showCartDrawer"
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="translate-x-full"
+      x-transition:enter-end="-translate-x-[0%]"
+      x-transition:leave="transition ease-in duration-300"
+      x-transition:leave-start="-translate-x-[0%]"
+      x-transition:leave-end="translate-x-full"
+    >
+      <button
+        class="z-10 absolute top-0 left-0 btn btn-sm btn-ghost btn-circle"
+        @click="$store.cart.showCartDrawer = false"
+      >
+        {% render 'icons',
+          type: 'x'
+        %}
+      </button>
+
+      <h1 class="font-semibold text-xl text-right p-4 flex justify-end gap-2 items-center bg-base-300">
+        <span>{{ 'sections.header.header_cart_drawer.heading' | t }}</span>
+
+        {% render 'icons',
+          type: 'shopping-cart'
+        %}
+      </h1>
+
+      <ul class="flex-1 flex flex-col gap-4 overflow-y-auto">
+        <template x-for="(item, index) in $store.cart.data.items">
+          <li class="p-4 h-48 overflow-hidden flex gap-2 transition-all flex-shrink-0">
+            <figure class="relative h-full aspect-[10_/_16] overflow-hidden">
+              <img
+                class="z-10 relative h-full w-full object-contain p-1"
+                :src="item.image"
+                draggable="false"
+              />
+
+              <img
+                class="absolute inset-0 h-full w-full object-cover blur-sm scale-105"
+                :src="item.image"
+                draggable="false"
+              />
+            </figure>
+
+            <div class="flex-1 flex flex-col justify-between overflow-hidden p-1">
+              <a
+                class="flex flex-col"
+                :href="item.url"
+              >
+                <h3
+                  class="font-semibold truncate"
+                  x-text="item.product_title"
+                ></h3>
+
+                <ul class="flex gap-2 opacity-80">
+                  <template x-for="option in item.variant_options">
+                    <li class="truncate" x-text="option"></li>
+                  </template>
+                </ul>
+              </a>
+
+              <div class="flex flex-col gap-2">
+                <p
+                  class="text-xl font-semibold"
+                  x-text="Shopify.formatMoney(
+                    item.final_line_price,
+                    '{{ cart.currency.symbol }}'
+                  )"
+                ></p>
+
+                <div class="flex gap-4 justify-between">
+                  <input
+                    class="input input-sm w-full flex-1 overflow-hidden"
+                    type="number"
+                    min="0"
+                    :value="item.quantity"
+                    @change="(e) => $store.cart.change({ line: index + 1, quantity: e.target.value })"
+                  />
+
+                  <button
+                    class="flex-1 btn btn-sm btn-error hover:bg-transparent"
+                    @click="$store.cart.change({ line: index + 1, quantity: 0 })"
+                  >
+                    {{ 'sections.header.header_cart_drawer.remove_button' | t }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </li>
+        </template>
+      </ul>
+
+      <div class="flex flex-col gap-4 p-4">
+        <h3 class="text-3xl">
+          <span class="font-semibold">
+            {{ 'sections.header.header_cart_drawer.total_price' | t }}
+          </span>
+          <span
+            x-text="Shopify.formatMoney(
+              $store.cart.data.total_price,
+              '{{ cart.currency.symbol }}'
+            )"
+          >
+          </span>
+        </h3>
+
+        <a class="btn btn-primary text-xl" href="/checkout">
+          {{ 'sections.header.header_cart_drawer.checkout_button' | t }}
+        </a>
+      </div>
+    </div>
+  </div>
+</template>

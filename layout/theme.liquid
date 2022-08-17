@@ -26,6 +26,8 @@
 
     {{ 'main.css' | asset_url | stylesheet_tag }}
     <script src="{{ 'alpinejs.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'cart.js' | asset_url }}"></script>
+    <script src="{{ 'formatMoney.js' | asset_url }}"></script>
 
     {{ content_for_header }}
   </head>

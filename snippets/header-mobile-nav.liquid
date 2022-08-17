@@ -1,0 +1,161 @@
+<template x-teleport="body">
+  <div
+    class="z-50 fixed inset-0 w-full h-screen pointer-events-none"
+    x-cloak
+    x-show="showMobileNav"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-in duration-300"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+  >
+    <div
+      class="w-full h-full bg-neutral bg-opacity-30 pointer-events-auto"
+      @click="showMobileNav = false"
+    ></div>
+
+    <div
+      class="z-10 absolute inset-0 h-full w-full sm:w-[60%] md:w-[25rem] bg-base-200 pointer-events-auto"
+      x-show="showMobileNav"
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="-translate-x-full"
+      x-transition:enter-end="translate-x-[0%]"
+      x-transition:leave="transition ease-in duration-300"
+      x-transition:leave-start="translate-x-[0%]"
+      x-transition:leave-end="-translate-x-full"
+    >
+      <button
+        class="z-10 absolute top-0 right-0 btn btn-sm btn-ghost btn-circle"
+        @click="showMobileNav = false"
+      >
+        {% render 'icons',
+          type: 'x'
+        %}
+      </button>
+
+      <nav class="h-full">
+        <ul class="relative h-full overflow-x-hidden overflow-y-auto">
+          {% for link in section.settings.mobile_nav_link_list.links %}
+            {% if link.links == blank %}
+              <li class="w-full">
+                <a
+                  {% if link.active %}
+                    class="block p-4 text-lg font-semibold truncate underline cursor-default"
+                  {% else %}
+                    class="block p-4 text-lg font-semibold truncate hover:bg-base-300"
+                    href="{{ link.url }}"
+                  {% endif %}
+                >
+                  {{ link.title }}
+                </a>
+              </li>
+            {% else %}
+              <li x-data="{ show: false }">
+                <button
+                  class="w-full flex gap-2 justify-between items-center p-4 text-lg font-semibold hover:bg-base-300"
+                  @click="show = true"
+                >
+                  <div class="truncate flex-1 text-left">{{ link.title }}</div>
+                  
+                  {% render 'icons',
+                    type: "chevron-right"
+                  %}
+                </button>
+      
+                <ul
+                  class="absolute inset-0 bg-base-200"
+                  x-show="show"
+                  x-transition:enter="transition ease-out duration-300"
+                  x-transition:enter-start="translate-x-full"
+                  x-transition:enter-end="translate-x-[0%]"
+                  x-transition:leave="transition ease-in duration-300"
+                  x-transition:leave-start="translate-x-[0%]"
+                  x-transition:leave-end="-translate-x-full"
+                >
+                  <button
+                    class="w-full flex gap-2 items-center p-4 text-lg font-semibold cursor-pointer hover:bg-base-300"
+                    @click="show = false"
+                  >
+                    {% render 'icons',
+                      type: "chevron-left"
+                    %}
+
+                    <span>{{ 'sections.header.header_mobile_nav.back_button' | t }}</span>
+                  </button>
+
+                  {% for child_link in link.links %}
+                    {% if child_link.links == blank %}
+                      <li>
+                        <a
+                          {% if child_link.active %}
+                            class="block p-4 text-lg font-semibold truncate underline cursor-default"
+                          {% else %}
+                            class="block p-4 text-lg font-semibold truncate hover:bg-base-300"
+                            href="{{ child_link.url }}"
+                          {% endif %}
+                        >
+                          {{ child_link.title }}
+                        </a>
+                      </li>
+                    {% else %}
+                      <li x-data="{ show: false }">
+                        <button
+                          class="w-full flex gap-2 justify-between items-center p-4 text-lg font-semibold hover:bg-base-300"
+                          @click="show = true"
+                        >
+                          <div class="truncate flex-1 text-left">{{ child_link.title }}</div>
+      
+                          {% render 'icons',
+                            type: "chevron-right"
+                          %}
+                        </button>
+      
+                        <ul
+                          class="absolute inset-0 bg-base-200"
+                          x-show="show"
+                          x-transition:enter="transition ease-out duration-300"
+                          x-transition:enter-start="translate-x-full"
+                          x-transition:enter-end="translate-x-[0%]"
+                          x-transition:leave="transition ease-in duration-300"
+                          x-transition:leave-start="translate-x-[0%]"
+                          x-transition:leave-end="-translate-x-full"
+                        >
+                          <button
+                            class="w-full flex gap-2 items-center p-4 text-lg font-semibold cursor-pointer hover:bg-base-300"
+                            @click="show = false"
+                          >
+                            {% render 'icons',
+                              type: "chevron-left"
+                            %}
+        
+                            <span>{{ 'sections.header.header_mobile_nav.back_button' | t }}</span>
+                          </button>
+
+                          {% for grandchild_link in child_link.links %}
+                            <li>
+                              <a
+                                {% if grandchild_link.active %}
+                                  class="block p-4 text-lg font-semibold truncate underline cursor-default"
+                                {% else %}
+                                  class="block p-4 text-lg font-semibold truncate hover:bg-base-300"
+                                  href="{{ grandchild_link.url }}"
+                                {% endif %}
+                              >
+                                {{ grandchild_link.title }}
+                              </a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+  </div>
+</template>
