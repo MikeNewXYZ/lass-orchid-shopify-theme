@@ -20,6 +20,9 @@
         "no_results_heading": "Sorry No Products Could Be Found",
         "no_results_info": "Try searching something else"
       }
+    },
+    "list_collections": {
+      "heading": "Product Collections"
     }
   }
 }

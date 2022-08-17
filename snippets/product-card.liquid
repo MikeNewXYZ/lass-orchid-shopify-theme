@@ -1,0 +1,38 @@
+<a
+  class="bg-base-300 flex flex-col h-[30rem]"
+  href="{{ product.url }}"
+>
+  <div class="bg-primary">
+    <h3 class="p-2 text-center text-primary-content font-semibold">
+      {{ product.title }}
+    </h3>
+  </div>
+
+  <figure class="relative flex-1 w-full overflow-hidden">
+    <img
+      class="z-10 relative h-full w-full object-contain p-1"
+      src="{{ product.featured_image | img_url: 'medium' }}"
+      draggable="false"
+    />
+
+    <img
+      class="absolute inset-0 h-full w-full object-cover blur-sm scale-105"
+      src="{{ product.featured_image | img_url: 'small' }}"
+      draggable="false"
+    />
+  </figure>
+
+  <div class="text-center justify-center p-2 flex gap-2 text-primary-content font-semibold">
+    <p>
+      {{ product.price | money }}
+    </p>
+
+    <p class="line-through text-error">
+      {{ product.compare_at_price | money }}
+    </p>
+  </div>
+
+  <p class="bg-secondary text-secondary-content p-2 text-center">
+    {{ product.vendor }}
+  </p>
+</a>
