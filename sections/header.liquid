@@ -47,9 +47,15 @@
         </button>
 
         <button
-          class="btn btn-ghost btn-circle btn-sm md:btn-base"
+          class="relative btn btn-ghost btn-circle btn-sm md:btn-base"
           @click="$store.cart.showCartDrawer = true"
         >
+          <span
+            class="absolute -top-2 text-xs"
+            x-text="$store.cart.data.item_count"
+          >
+          </span>
+
           {% render 'icons',
             type: 'shopping-cart'
           %}
