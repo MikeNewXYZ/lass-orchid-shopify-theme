@@ -1,40 +1,60 @@
-<div class="mt-10">
+<div class="my-10">
   <div class="bg-base-200 py-10">
     <h1 class="container text-4xl md:text-5xl text-center font-semibold pb-1">
       {{ 'sections.list_collections.heading' | t }}
     </h1>
   </div>
 
-  <div class="mt-10 container">
-    {% for collection in collections %}
-      <div
-        {% if forloop.index != 1 %}
-          class="mt-14"
-        {% endif %}
-      >
-        <a
-          class="block bg-base-300 hover:bg-primary p-2 text-xl transition-colors"
-          href="{{ collection.url }}"
+  {% paginate collections by paginate_amount %}
+    <div class="mt-10 container">
+      {% for collection in collections %}
+        <div
+          {% if forloop.index != 1 %}
+            class="mt-14"
+          {% endif %}
         >
-          {{ collection.title }} ({{ collection.products.size }})
-        </a>
-        
-        <ul class="mt-8 grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {% for product in collection.products %}
-            <li>
-              {% render 'product-card', product: product %}
-            </li>
-          {% endfor %}
-        </ul>
+          <a
+            class="block bg-base-300 hover:bg-primary p-2 text-xl transition-colors"
+            href="{{ collection.url }}"
+          >
+            {{ collection.title }} ({{ collection.products.size }})
+          </a>
+          
+          <ul class="mt-8 grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {% for product in collection.products %}
+              <li>
+                {% render 'product-card', product: product %}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if paginate.pages > 1 %}
+      <div class="container flex justify-center mt-16">
+        {% render 'pagination', paginate: paginate %}
       </div>
-    {% endfor %}
-  </div>
+    {% endif %}
+  {% endpaginate %}
 </div>
 
 
 {% schema %}
 {
-  "name": "List Collections",
-  "tag": "section"
+  "name": "t:sections.list_collections.name",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "paginate_amount",
+      "label": "t:sections.list_collections.settings.paginate_amount.label",
+      "info": "t:sections.list_collections.settings.paginate_amount.info",
+      "min": 1,
+      "max": 30,
+      "step": 1,
+      "default": 5
+    }
+  ]
 }
 {% endschema %}

@@ -1,0 +1,38 @@
+{% if paginate.pages > 1 %}
+  <ul class="btn-group">
+    <a
+      {% if paginate.previous.is_link %}
+        class="btn"
+      {% else %}
+        class="btn btn-disabled"
+      {% endif %}
+      href="{{ paginate.previous.url }}"
+    >
+      Previous
+    </a>
+
+  
+    {% for part in paginate.parts %}
+      {% if part.is_link %}
+        <a class="btn" href="{{ part.url }}">
+          {{ part.title }}
+        </a>
+      {% else %}
+        <a class="btn btn-active pointer-events-none">
+          {{ part.title }}
+        </a>
+      {% endif %}
+    {% endfor %}
+
+    <a
+      {% if paginate.next.is_link %}
+        class="btn"
+      {% else %}
+        class="btn btn-disabled"
+      {% endif %}
+      href="{{ paginate.next.url }}"
+    >
+      Next
+    </a>
+  </ul>
+{% endif %}
