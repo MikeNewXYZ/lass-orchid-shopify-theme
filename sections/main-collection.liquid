@@ -1,0 +1,130 @@
+<div class="my-10" x-data="collection">
+  <div class="bg-base-200 py-10">
+    <h1 class="container text-4xl md:text-5xl text-center font-semibold pb-1">
+      {{ collection.title }}
+    </h1>
+  </div>
+
+  <div class="container mt-4 md:mt-8 flex flex-col md:flex-row gap-4 md:justify-end">
+    <div class="form-control w-full max-w-xs">
+      <label class="label">
+        {{ 'sections.collection.tags_selection.label' | t }}
+      </label>
+
+      <select
+        class="select select-bordered"
+        @change="(e) => setTag(e.target.value)"
+      >
+        <option
+          value="all"
+          {% if current_tags == blank %}
+            selected
+          {% endif %}
+        >
+          {{ 'sections.collection.tags_selection.all_label' | t }}
+        </option>
+
+        {% for tag in collection.all_tags %}
+          <option
+            value="{{ tag }}"
+            {% if current_tags contains tag %}
+              selected
+            {% endif %}
+          >
+            {{ tag | capitalize }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div
+      class="form-control w-full max-w-xs"
+      @change="(e) => setSortBy(e.target.value)"
+    >
+      <label class="label">
+        {{ 'sections.collection.sort_by_selection.label' | t }}
+      </label>
+
+      <select class="select select-bordered">
+        {% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
+      
+        {% for option in collection.sort_options %}
+          <option
+            value="{{ option.value }}"
+            {% if option.value == sort_by %}
+              selected
+            {% endif %}
+          >
+            {{ option.name }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+
+  {% paginate collection.products by section.settings.paginate_amount %}
+    <ul class="mt-12 md:mt-16 container grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {% for product in collection.products %}
+        <li>
+          {% render 'product-card', product: product %}
+        </li>
+      {% endfor %}
+    </ul>
+    
+    {% if paginate.pages > 1 %}
+      <div class="container flex justify-center mt-16">
+        {% render 'pagination', paginate: paginate %}
+      </div>
+    {% endif %}
+  {% endpaginate %}
+</div>
+
+<script>
+document.addEventListener("alpine:init", () => {
+  Alpine.data("collection", () => ({
+    init() {
+      this.checkIfEnoughItemsForPage()
+    },
+    checkIfEnoughItemsForPage() {
+      const pagination = parseInt("{{ section.settings.paginate_amount }}")
+      const collectionSize = parseInt("{{ collection.products.size }}")
+      const currentPage = parseInt(new URLSearchParams(location.search).get("page")) || 1
+
+      if (collectionSize <= (pagination * (currentPage - 1))) {
+        const params = new URLSearchParams(location.search)
+        params.set("page", 1)
+        location.search = params.toString()
+      }
+    },
+    setTag(value) {
+      const defaultPath = "{{ routes.collections_url }}/{{ collection.handle }}"
+      const newPath = `${defaultPath}/${value}`
+      location.pathname = value === "all" ? defaultPath : newPath
+    },
+    setSortBy(value) {
+      const search = `?sort_by=${value}`
+      location.search = search
+    }
+  }))
+}) 
+</script>
+
+{% schema %}
+{
+  "name": "t:sections.collection.name",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "paginate_amount",
+      "label": "t:sections.collection.settings.paginate_amount.label",
+      "info": "t:sections.collection.settings.paginate_amount.info",
+      "min": 1,
+      "max": 30,
+      "step": 1,
+      "default": 12
+    }
+  ]
+}
+{% endschema %}

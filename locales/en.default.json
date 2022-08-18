@@ -23,6 +23,15 @@
     },
     "list_collections": {
       "heading": "Product Collections"
+    },
+    "collection": {
+      "tags_selection": {
+        "label": "Tags",
+        "all_label": "All"
+      },
+      "sort_by_selection": {
+        "label": "Sort By"
+      }
     }
   }
 }

@@ -56,12 +56,21 @@
     "hero": {
       "name": "Hero"
     },
+    "collection": {
+      "name": "Collection",
+      "settings": {
+        "paginate_amount": {
+          "label": "Paginate Amount",
+          "info": "The max amount of products that will be shown on screen at a time."
+        }
+      }
+    },
     "list_collections": {
       "name": "List Collections",
       "settings": {
         "paginate_amount": {
           "label": "Paginate Amount",
-          "info": "The amount of collections that will be shown on screen at a time."
+          "info": "The max amount of collections that will be shown on screen at a time."
         }
       }
     }
