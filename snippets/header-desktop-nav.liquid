@@ -67,7 +67,7 @@
               {% if child_link.active %}
                 class="font-semibold underline"
               {% else %}
-                class="font-semibold"
+                class="block font-semibold hover:scale-105 transition-transform"
               {% endif %}
   
               href="{{ child_link.url }}"
@@ -80,9 +80,9 @@
                 <li>
                   <a
                     {% if grandchild_link.active %}
-                      class="active-class"
+                      class="font-semibold underline"
                     {% else %}
-                      class="not-active-class"
+                      class="block hover:scale-105 transition-transform"
                     {% endif %}
         
                     href="{{ grandchild_link.url }}"
