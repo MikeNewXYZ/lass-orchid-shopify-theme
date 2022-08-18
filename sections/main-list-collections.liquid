@@ -5,7 +5,7 @@
     </h1>
   </div>
 
-  {% paginate collections by paginate_amount %}
+  {% paginate collections by section.settings.paginate_amount %}
     <div class="mt-10 container">
       {% for collection in collections %}
         <div
