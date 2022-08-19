@@ -19,5 +19,9 @@ module.exports = {
   daisyui: {
     themes: ["cupcake"]
   },
-  plugins: [require("@tailwindcss/typography"), require("daisyui")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("tailwindcss-debug-screens"),
+    require("daisyui")
+  ],
 }

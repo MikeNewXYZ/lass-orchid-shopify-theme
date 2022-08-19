@@ -1,10 +1,15 @@
 {
+  "wrapper": ".flex.flex-col.gap-14.mb-10",
   "sections": {
     "main": {
       "type": "main-product"
+    },
+    "product_recommendations": {
+      "type": "product-recommendations"
     }
   },
   "order": [
-    "main"
+    "main",
+    "product_recommendations"
   ]
 }

@@ -76,6 +76,14 @@
     },
     "product": {
       "name": "Product"
+    },
+    "product_recommendations": {
+      "name": "Product Recommendations",
+      "settings": {
+        "heading_text": {
+          "label": "Heading"
+        }
+      }
     }
   }
 }

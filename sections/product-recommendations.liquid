@@ -1,0 +1,87 @@
+<div class="container" x-data="productRecommendation">
+  <h1 class="text-center text-4xl font-semibold">
+    {{ section.settings.heading_text }}
+  </h1>
+
+  <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-8">
+    <template x-for="product in productRecommendation">
+      <a
+        class="relative w-full h-96 hover:scale-105 transition-transform"
+        :href="product.url"
+      >
+        <div class="absolute inset-0 w-full h-full flex justify-center items-center z-10 hover:first:opacity-0">
+          <div class="w-full text-center bg-primary text-primary-content p-2">
+            <h1
+              class="text-2xl font-semibold"
+              x-text="product.title"
+            >
+            </h1>
+    
+            <div class="text-2xl flex gap-2 justify-center">
+              <span
+                x-text="Shopify.formatMoney(
+                  product.price,
+                  '{{ cart.currency.symbol }}'
+                )"
+              >
+              </span>
+      
+              <span
+                class="line-through opacity-80"
+                x-show="product.compare_at_price"
+                x-text="Shopify.formatMoney(
+                  product.compare_at_price,
+                  '{{ cart.currency.symbol }}'
+                )"
+              >
+            </div>
+          </div>
+
+        </div>
+  
+        <img
+          class="z-[5] relative h-full w-full object-cover object-center"
+          draggable="false"
+          :src="product.featured_image"
+        />
+      </a>
+    </template>
+  </div>
+</div>
+
+<script>
+document.addEventListener("alpine:init", () => {
+  Alpine.data("productRecommendation", () => ({
+    productRecommendation: [],
+    init() {
+      this.getProductRecommendation()
+    },
+    async getProductRecommendation() {
+      const response = await fetch(window.Shopify.routes.root + "recommendations/products.json?product_id={{ product.id }}&limit=4")
+      const recommendations = await response.json()
+
+      this.productRecommendation = recommendations.products
+    }
+  }))
+})
+</script>
+
+{% schema %}
+{
+  "name": "t:sections.product_recommendations.name",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "t:sections.product_recommendations.settings.heading_text.label",
+      "default": "You may also like..."
+    }
+  ],
+  "default": [
+    {
+      "name": "t:sections.product_recommendations.name"
+    }
+  ]
+}
+{% endschema %}
