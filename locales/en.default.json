@@ -1,5 +1,12 @@
 {
   "sections": {
+    "newsletter": {
+      "error": {
+        "invalid_email": "Please enter a valid email address."
+      },
+      "sign_up_button": "Sign up",
+      "email_input_placeholder": "Enter your email"
+    },
     "hero": {
       "main_text": "Ya alreet mate, I'm meant to be a hero apparently."
     },

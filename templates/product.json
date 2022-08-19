@@ -6,10 +6,14 @@
     },
     "product_recommendations": {
       "type": "product-recommendations"
+    },
+    "newsletter": {
+      "type": "newsletter"
     }
   },
   "order": [
     "main",
-    "product_recommendations"
+    "product_recommendations",
+    "newsletter"
   ]
 }

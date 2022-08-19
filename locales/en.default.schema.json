@@ -84,6 +84,17 @@
           "label": "Heading"
         }
       }
+    },
+    "newsletter": {
+      "name": "Newsletter",
+      "settings": {
+        "heading_text": {
+          "label": "Heading"
+        },
+        "subheading_text": {
+          "label": "Subheading"
+        }
+      }
     }
   }
 }

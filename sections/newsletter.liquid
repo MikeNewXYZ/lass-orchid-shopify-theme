@@ -1,0 +1,72 @@
+<div class="bg-base-200 py-8">
+  <div class="container text-center">
+    {% if section.settings.heading_text != blank %}
+      <h1 class="text-3xl font-semibold">
+        {{ section.settings.heading_text }}
+      </h1>
+    {% endif %}
+
+    {% if section.settings.subheading_text != blank %}
+      <h3 class="text-xl mt-2">
+        {{ section.settings.subheading_text }}
+      </h3>
+    {% endif %}
+  </div>
+
+
+  {% form 'customer' %}
+    {% if form.errors contains 'email' %}
+      {% assign input_style = 'input-error' %}
+    {% else %}
+      {% assign input_style = 'input-primary' %}
+    {% endif %}
+
+    <div class="container flex flex-col gap-4 justify-center items-center mt-8">
+      <input
+        class="{{ input_style }} input w-full max-w-sm"
+        type="email"
+        placeholder="{{ 'sections.newsletter.email_input_placeholder' | t }}"
+        name="contact[email]"
+      />
+
+      <input
+        class="btn text-xl w-full max-w-sm"
+        type="submit"
+        value="{{ 'sections.newsletter.sign_up_button' | t }}"
+      />
+    </div>
+
+    {% if form.errors contains 'email' %}
+      <p class="container text-error text-center text-xl font-semibold mt-6">
+        {{ 'sections.newsletter.error.invalid_email' | t }}
+      </p>
+    {% endif %}
+  {% endform %}
+</div>
+
+
+{% schema %}
+{
+  "name": "t:sections.newsletter.name",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "t:sections.newsletter.settings.heading_text.label",
+      "default": "Join our mailing list!"
+    },
+    {
+      "type": "text",
+      "id": "subheading_text",
+      "label": "t:sections.newsletter.settings.subheading_text.label",
+      "default": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.newsletter.name"
+    }
+  ]
+}
+{% endschema %}
