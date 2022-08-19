@@ -1,8 +1,44 @@
-<p>Footer</p>
+<div class="container py-4">
+  <nav class="footer">
+    {% for link in section.settings.footer_nav_link_list.links %}
+      <div>
+        <a
+          class="footer-title"
+          href="{{ link.url }}"
+        >
+          {{ link.title }}
+        </a>
+
+        {% for child_link in link.links %}
+          <a
+            class="link link-hover"
+            href="{{ child_link.url }}"
+          >
+            {{ child_link.title }}
+          </a>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </nav>
+
+  <div class="flex gap-2 mt-12">
+    <p>&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: '/' }}</p>
+    <p>{{ powered_by_link }}</p>
+  </div>
+</div>
 
 {% schema %}
 {
   "name": "t:sections.footer.name",
-  "tag": "footer"
+  "tag": "footer",
+  "class": "bg-base-300",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "footer_nav_link_list",
+      "label": "t:sections.footer.settings.footer_nav_link_list.label",
+      "default": "footer"
+    }
+  ]
 }
 {% endschema %}

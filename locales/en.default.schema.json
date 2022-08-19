@@ -51,7 +51,12 @@
       }
     },
     "footer": {
-      "name": "Footer"
+      "name": "Footer",
+      "settings": {
+        "footer_nav_link_list": {
+          "label": "Footer Navigation"
+        }
+      }
     },
     "hero": {
       "name": "Hero"
