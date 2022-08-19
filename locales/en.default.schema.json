@@ -73,6 +73,9 @@
           "info": "The max amount of collections that will be shown on screen at a time."
         }
       }
+    },
+    "product": {
+      "name": "Product"
     }
   }
 }

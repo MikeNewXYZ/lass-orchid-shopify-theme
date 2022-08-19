@@ -1,0 +1,195 @@
+
+<div class="my-10 container" x-data="product">
+  <div class="flex flex-col justify-center lg:flex-row gap-10 xl:gap-20">
+    <div
+      class="w-full lg:max-w-xl xl:max-w-2xl"
+      x-data="{
+        currentImage: `{{ product.images[0] | img_url: 'master' }}`,
+        previousImage: `{{ product.images[0] | img_url: 'master' }}`
+      }"
+    >
+      <figure class="relative w-full aspect-square overflow-hidden">
+        <img
+          class="z-10 relative h-full w-full object-contain p-4"
+          :src="currentImage"
+          draggable="false"
+        />
+    
+        <img
+          class="absolute inset-0 h-full w-full object-cover blur-sm scale-105"
+          :src="currentImage"
+          draggable="false"
+        />
+      </figure>
+
+      <div class="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-4 gap-4 mt-4">
+        {% for image in product.images %}
+          <button
+            class="hover:scale-105 active:scale-95 transition-transform"
+            :class="currentImage === `{{ image | img_url: 'master' }}` && 'scale-105'"
+            @mouseEnter="currentImage = `{{ image | img_url: 'master' }}`"
+            @mouseLeave="currentImage = previousImage"
+            @click="currentImage = `{{ image | img_url: 'master' }}`; previousImage = `{{ image | img_url: 'master' }}`"
+          >
+            <img
+              class="w-full aspect-square object-cover object-center"
+              src="{{ image | img_url: 'medium' }}"
+              draggable="false"
+            />
+          </button>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="lg:max-w-lg xl:max-w-xl flex flex-col gap-6">
+      <div>
+        <h1 class="text-3xl lg:text-4xl font-semibold">
+          {{ product.title }}
+        </h1>
+  
+        <div class="text-3xl lg:text-4xl flex gap-2 mt-2">
+          <span
+            x-text="Shopify.formatMoney(
+              currentVariant.price,
+              '{{ cart.currency.symbol }}'
+            )"
+          >
+          </span>
+  
+          <span
+            class="line-through text-error"
+            x-show="currentVariant.compare_at_price"
+            x-text="Shopify.formatMoney(
+              currentVariant.compare_at_price,
+              '{{ cart.currency.symbol }}'
+            )"
+          >
+          </span>
+
+        </div>
+      </div>
+
+      {% unless product.has_only_default_variant %}
+        <div class="flex flex-col gap-6">
+          {% for product_option in product.options_with_values %}
+            <div>
+              <h5 class="font-semibold lg:text-xl">
+                {{ product_option.name }}
+              </h5>
+
+              <form
+                class="flex flex-wrap gap-2 mt-1 lg:mt-2"
+                @change="(e) => options[{{ forloop.index0 }}] = e.target.value"
+              >
+                {% for value in product_option.values %}
+                  <div>
+                    <input
+                      class="hidden peer"
+                      type="radio"
+                      id="{{ value }}"
+                      name="{{ product_option.name }}"
+                      value="{{ value }}"
+                      {% if product_option.selected_value == value %}
+                        checked
+                      {% endif %}
+                    >
+
+                    <label
+                      class="btn btn-outline btn-sm lg:btn-md peer-checked:btn-active peer-checked:text-white"
+                      for="{{ value }}"
+                    >
+                      <span class="lg:text-xl">
+                        {{ value }}
+                      </span>
+                    </label>
+                  </div>
+                {% endfor %}
+              </form>
+            </div>
+          {% endfor %}
+        </div>
+      {% endunless %}
+
+      <div class="form-control w-full max-w-xs">
+        <label class="label font-semibold lg:text-xl">
+          {{ 'sections.product.options.quantity_label' | t }}
+        </label>
+
+        <input
+          class="input input-bordered w-full max-w-xs lg:text-xl"
+          type="number"
+          min="1"
+          value="1"
+          @change="(e) => quantity = e.target.value"
+        />
+      </div>
+
+      <button
+        class="btn gap-2 text-xl w-full max-w-xs"
+        @click="addToCart()"
+      >
+        {% render 'icons',
+          type: 'shopping-cart',
+          class: "w-6 h-6"
+        %}
+
+        <span>{{ 'sections.product.options.add_to_cart_button' | t }}</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mt-14 prose lg:prose-xl max-w-none">
+    <h3>{{ 'sections.product.description.heading' | t }}</h3>
+    <p>{{ product.description }}</p>
+  </div>
+</div>
+
+<script>
+document.addEventListener("alpine:init", () => {
+  Alpine.data("product", () => ({
+    productData: {{ product | json }},
+    options: [
+      "{{ product.options_with_values[0].selected_value }}" || null,
+      "{{ product.options_with_values[1].selected_value }}" || null,
+      "{{ product.options_with_values[2].selected_value }}" || null
+    ],
+    currentVariant: {{ product.selected_or_first_available_variant | json }},
+    quantity: 1,
+    init() {
+      this.$watch('currentVariant', this.setUrlSearchVariant)
+
+      this.$watch('options', this.setCurrentVariant.bind(this))
+    },
+    setCurrentVariant() {
+      this.productData.variants.forEach((variant) => {
+        if (
+          variant.option1 !== this.options[0] ||
+          variant.option2 !== this.options[1] ||
+          variant.option3 !== this.options[2]
+        ) return
+
+        this.currentVariant = variant
+      })
+    },
+    setUrlSearchVariant({ id }) {
+      history.pushState({variant: id}, "", `?variant=${id}`)
+    },
+    async addToCart() {
+      await this.$store.cart.add([{
+        id: this.currentVariant.id,
+        quantity: this.quantity
+      }])
+      
+      this.$store.cart.showCartDrawer = true
+    }
+  }))
+})
+</script>
+
+
+{% schema %}
+{
+  "name": "t:sections.product.name",
+  "tag": "section"
+}
+{% endschema %}

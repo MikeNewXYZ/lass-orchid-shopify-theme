@@ -32,6 +32,15 @@
       "sort_by_selection": {
         "label": "Sort By"
       }
+    },
+    "product": {
+      "options": {
+        "quantity_label": "Quantity",
+        "add_to_cart_button": "ADD TO CART"
+      },
+      "description": {
+        "heading": "Description"
+      }
     }
   }
 }
