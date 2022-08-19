@@ -86,6 +86,7 @@ document.addEventListener("alpine:init", () => {
     showMobileNav: false,
     showSearchModal: false,
     showMiniHeader: false,
+    hiddenMiniHeaderCreated: false,
     init() {
       this.toggleMiniHeader()
     },
@@ -97,6 +98,19 @@ document.addEventListener("alpine:init", () => {
         if (scrollPos >= headerHeight) {
           if (this.showMiniHeader) return
           this.showMiniHeader = true
+
+          if (this.hiddenMiniHeaderCreated) return
+          this.$nextTick(() => {
+            const miniHeaderHeight = this.$refs.miniHeader.clientHeight
+
+            const hiddenMiniHeaderEl = document.createElement("div")
+            hiddenMiniHeaderEl.classList.add("block", "lg:hidden")
+            hiddenMiniHeaderEl.style.height = `${miniHeaderHeight}px`
+
+            document.body.appendChild(hiddenMiniHeaderEl)
+            
+            this.hiddenMiniHeaderCreated = true
+          })
         } else {
           if (!this.showMiniHeader) return
           this.showMiniHeader = false
