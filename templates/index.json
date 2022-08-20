@@ -2,9 +2,13 @@
   "sections": {
     "hero": {
       "type": "hero"
+    },
+    "newsletter": {
+      "type": "newsletter"
     }
   },
   "order": [
-    "hero"
+    "hero",
+    "newsletter"
   ]
 }
