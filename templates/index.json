@@ -1,7 +1,65 @@
 {
+  "wrapper": ".flex.flex-col.gap-12.pb-10",
   "sections": {
     "hero": {
-      "type": "hero"
+      "type": "hero",
+      "blocks": {
+        "richtext_1": {
+          "type": "richtext"
+        },
+        "richtext_2": {
+          "type": "richtext"
+        },
+        "button": {
+          "type": "button"
+        }
+      },
+      "block_order": [
+        "richtext_1",
+        "richtext_2",
+        "button"
+      ]
+    },
+    "image_and_text_1": {
+      "type": "image-and-text",
+      "blocks": {
+        "heading": {
+          "type": "heading"
+        },
+        "richtext": {
+          "type": "richtext"
+        },
+        "button": {
+          "type": "button"
+        }
+      },
+      "block_order": [
+        "heading",
+        "richtext",
+        "button"
+      ]
+    },
+    "image_and_text_2": {
+      "type": "image-and-text",
+      "settings": {
+        "order": "1"
+      },
+      "blocks": {
+        "heading": {
+          "type": "heading"
+        },
+        "richtext": {
+          "type": "richtext"
+        },
+        "button": {
+          "type": "button"
+        }
+      },
+      "block_order": [
+        "heading",
+        "richtext",
+        "button"
+      ]
     },
     "newsletter": {
       "type": "newsletter"
@@ -9,6 +67,8 @@
   },
   "order": [
     "hero",
+    "image_and_text_1",
+    "image_and_text_2",
     "newsletter"
   ]
 }

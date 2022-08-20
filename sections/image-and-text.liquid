@@ -1,0 +1,120 @@
+<div class="container lg:h-[40rem] grid lg:grid-cols-2 gap-8 p-4">
+  <img
+    class="lg:h-full aspect-square lg:aspect-auto w-full object-cover object-center {% if section.settings.order == '1' %} lg:order-1 {% endif %}"
+    src="{{ section.settings.main_image | img_url: 'grande' }}"
+    draggable="false"
+  />
+
+  <div class="flex flex-col justify-center lg:mb-8 gap-4 prose md:prose-xl prose-h1:mb-[0.5rem_!important]">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'heading' %}
+          <h1 class="break-words">{{ block.settings.heading_text }}</h1>
+
+        {% when 'richtext' %}
+          <div>
+            {{ block.settings.richtext }}
+          </div>
+
+        {% when 'button' %}
+          <a
+            class="btn w-full max-w-sm text-xl"
+            href="{{ block.settings.button_url }}"
+          >
+            {{ block.settings.button_text }}
+          </a>
+      {% endcase %}
+    {% endfor %}
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "t:sections.image_and_text.name",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "radio",
+      "id": "order",
+      "label": "t:sections.image_and_text.settings.order.label",
+      "info": "t:sections.image_and_text.settings.order.info",
+      "default": "0",
+      "options": [
+        {
+          "value": "0",
+          "label": "t:sections.image_and_text.settings.order.options.0"
+        },
+        {
+          "value": "1",
+          "label": "t:sections.image_and_text.settings.order.options.1"
+        }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "t:sections.image_and_text.settings.main_image.label"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "t:sections.image_and_text.blocks.heading.name",
+      "type": "heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading_text",
+          "label": "t:sections.image_and_text.blocks.heading.settings.heading_text.label",
+          "default": "Heading Text"
+        }
+      ]
+    },
+    {
+      "name": "t:sections.image_and_text.blocks.richtext.name",
+      "type": "richtext",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "richtext",
+          "label": "t:sections.image_and_text.blocks.richtext.settings.richtext.label",
+          "default": "<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis natus omnis, animi quisquam rerum minima minus nihil inventore id quo optio quasi fugit officia cum sapiente aperiam quod, dicta sequi.</p>"
+        }
+      ]
+    },
+    {
+      "name": "t:sections.image_and_text.blocks.button.name",
+      "type": "button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "t:sections.image_and_text.blocks.button.settings.button_text.label",
+          "default": "View Products"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "t:sections.image_and_text.blocks.button.settings.button_url.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.image_and_text.name",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "richtext"
+        },
+        {
+          "type": "button"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

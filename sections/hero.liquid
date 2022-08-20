@@ -1,12 +1,94 @@
-<p>{{ 'sections.hero.main_text' | t }}</p>
+<div class="relative h-[80vh] overflow-hidden border-primary">
+  <img
+    class="w-full h-full object-cover object-center blur-md scale-105"
+    src="https://placekitten.com/500/700"
+    draggable="false"
+  />
+
+  <div class="container absolute inset-0 h-full flex justify-center items-center">
+    <div class="w-full max-w-lg bg-base-200 shadow-lg">
+      <h1 class="p-4 text-center text-4xl font-semibold bg-secondary text-secondary-content">
+        {{ section.settings.heading_text }}
+      </h1>
+
+      <div class="p-4 flex flex-col gap-6">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'richtext' %}
+              <div>
+                {{ block.settings.richtext }}
+              </div>
+            {% when 'button' %}
+              <a
+                class="btn text-xl w-full"
+                href="{{ block.settings.button_url }}"
+              >
+                {{ block.settings.button_text }}
+              </a>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
 
 {% schema %}
 {
   "name": "t:sections.hero.name",
   "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "t:sections.hero.settings.heading_text.label",
+      "default": "Heading Text"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "t:sections.hero.blocks.richtext.name",
+      "type": "richtext",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "richtext",
+          "label": "t:sections.hero.blocks.richtext.settings.richtext.label",
+          "default": "<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis natus omnis, animi quisquam rerum minima minus nihil inventore id quo optio quasi fugit officia cum sapiente aperiam quod, dicta sequi.</p>"
+        }
+      ]
+    },
+    {
+      "name": "t:sections.hero.blocks.button.name",
+      "type": "button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "t:sections.hero.blocks.button.settings.button_text.label",
+          "default": "View Products"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "t:sections.hero.blocks.button.settings.button_url.label"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "t:sections.hero.name"
+      "name": "t:sections.hero.name",
+      "blocks": [
+        {
+          "type": "richtext"
+        },
+        {
+          "type": "richtext"
+        },
+        {
+          "type": "button"
+        }
+      ]
     }
   ]
 }

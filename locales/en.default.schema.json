@@ -59,7 +59,33 @@
       }
     },
     "hero": {
-      "name": "Hero"
+      "name": "Hero",
+      "settings": {
+        "heading_text": {
+          "label": "Heading Text"
+        }
+      },
+      "blocks": {
+        "richtext": {
+          "name": "Richtext",
+          "settings": {
+            "richtext": {
+              "label": "Richtext"
+            }
+          }
+        },
+        "button": {
+          "name": "Button",
+          "settings": {
+            "button_text": {
+              "label": "Button Text"
+            },
+            "button_url": {
+              "label": "Button URL"
+            }
+          }
+        }
+      }
     },
     "collection": {
       "name": "Collection",
@@ -106,6 +132,51 @@
     },
     "contact_form": {
       "name": "Contact Form"
+    },
+    "image_and_text": {
+      "name": "Image and Text",
+      "settings": {
+        "order": {
+          "label": "Image and Text Order",
+          "info": "This setting will only apply on desktop screen sizes.",
+          "options": {
+            "0": "Image then Text",
+            "1": "Text then Image"
+          }
+        },
+        "main_image": {
+          "label": "Main Image"
+        }
+      },
+      "blocks": {
+        "heading": {
+          "name": "Heading",
+          "settings": {
+            "heading_text": {
+              "label": "Heading Text"
+            }
+          }
+        },
+        "richtext": {
+          "name": "Richtext",
+          "settings": {
+            "richtext": {
+              "label": "Richtext"
+            }
+          }
+        },
+        "button": {
+          "name": "Button",
+          "settings": {
+            "button_text": {
+              "label": "Button Text"
+            },
+            "button_url": {
+              "label": "Button URL"
+            }
+          }
+        }
+      }
     }
   }
 }
