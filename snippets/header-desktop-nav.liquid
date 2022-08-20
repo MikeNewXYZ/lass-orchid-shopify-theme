@@ -52,52 +52,51 @@
           {% endfor %}
         </ul>
       {% else %}
-      <ul
-        class="z-20 absolute left-0 translate-y-2 text-left p-4 xl:p-8 bg-base-300 w-full grid lg:grid-cols-2 xl:grid-cols-3 gap-8 max-h-[70vh] overflow-y-auto transition-opacity"
-        x-cloak
-        x-show="show"
-        @mouseEnter="show = true; clearTimeout(timeout)"
-        @mouseLeave="show = false"
-        x-transition:enter-start="opacity-0"
-        x-transition:enter-end="opacity-100"
-        x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0"
-      >
-        {% for child_link in link.links %}
-          <li class="w-full">
-            <a
-              {% if child_link.active %}
-                class="font-semibold underline"
-              {% else %}
-                class="block font-semibold hover:scale-105 transition-transform"
-              {% endif %}
+        <ul
+          class="z-20 absolute left-0 translate-y-2 text-left p-4 xl:p-8 bg-base-300 w-full grid lg:grid-cols-2 xl:grid-cols-3 gap-8 max-h-[70vh] overflow-y-auto transition-opacity"
+          x-cloak
+          x-show="show"
+          @mouseEnter="show = true; clearTimeout(timeout)"
+          @mouseLeave="show = false"
+          x-transition:enter-start="opacity-0"
+          x-transition:enter-end="opacity-100"
+          x-transition:leave-start="opacity-100"
+          x-transition:leave-end="opacity-0"
+        >
+          {% for child_link in link.links %}
+            <li class="w-full">
+              <a
+                {% if child_link.active %}
+                  class="font-semibold underline"
+                {% else %}
+                  class="block font-semibold hover:scale-105 transition-transform"
+                {% endif %}
 
-              href="{{ child_link.url }}"
-            >
-              {{ child_link.title }}
-            </a>
+                href="{{ child_link.url }}"
+              >
+                {{ child_link.title }}
+              </a>
 
-            <ul class="mt-1 flex flex-col gap-2 text-lg">
-              {% for grandchild_link in child_link.links %}
-                <li>
-                  <a
-                    {% if grandchild_link.active %}
-                      class="font-semibold underline"
-                    {% else %}
-                      class="block hover:scale-105 transition-transform"
-                    {% endif %}
-        
-                    href="{{ grandchild_link.url }}"
-                  >
-                    {{ grandchild_link.title }}
-                  </a>
-                </li>
-              {% endfor %}
-            </ul>
-          </li>
-        {% endfor %}
-      </ul>
-
+              <ul class="mt-1 flex flex-col gap-2 text-lg">
+                {% for grandchild_link in child_link.links %}
+                  <li>
+                    <a
+                      {% if grandchild_link.active %}
+                        class="font-semibold underline"
+                      {% else %}
+                        class="block hover:scale-105 transition-transform"
+                      {% endif %}
+          
+                      href="{{ grandchild_link.url }}"
+                    >
+                      {{ grandchild_link.title }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </li>
+          {% endfor %}
+        </ul>
       {% endif %}
     {% endif %}
   </li>
