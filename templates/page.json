@@ -1,0 +1,11 @@
+{
+  "wrapper": ".py-10",
+  "sections": {
+    "main": {
+      "type": "main-page"
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
