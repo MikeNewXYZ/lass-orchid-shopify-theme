@@ -1,0 +1,82 @@
+<div class="container max-w-lg">
+  {% form 'contact' %}
+    {% if form.posted_successfully? %}
+      <p class="text-success font-semibold text-center my-4">
+        {{ 'sections.contact_form.posted_successfully_message' | t }}
+      </p>
+    {% endif %}
+
+    <ul class="flex flex-col gap-4">
+      <li class="form-control w-full">
+        <label class="label" for="name">
+          {{ 'sections.contact_form.name.label' | t }}
+        </label>
+
+        <input
+          class="input input-bordered w-full"
+          type="text"
+          placeholder="{{ 'sections.contact_form.name.placeholder' | t }}"
+          id="name"
+          name="contact[name]"
+          required
+        />
+      </li>
+
+      <li class="form-control w-full">
+        <label class="label" for="email">
+          {{ 'sections.contact_form.email.label' | t }}
+        </label>
+
+        <input
+          class="input input-bordered w-full"
+          type="text"
+          placeholder="{{ 'sections.contact_form.email.placeholder' | t }}"
+          id="email"
+          name="contact[email]"
+          required
+        />
+
+        {% if form.errors contains 'email' %}
+          <label class="label text-error">
+            {{ 'sections.contact_form.email.error' | t }}
+          </label>
+        {% endif %}
+      </li>
+
+      <li class="form-control">
+        <label class="label" for="message">
+          {{ 'sections.contact_form.message.label' | t }}
+        </label> 
+
+        <textarea
+          class="textarea textarea-bordered h-40"
+          placeholder="{{ 'sections.contact_form.message.placeholder' | t }}"
+          id="message"
+          name="contact[body]"
+          required
+        ></textarea>
+
+        {% if form.errors contains 'body' %}
+          <label class="label text-error">
+            {{ 'sections.contact_form.message.error' | t }}
+          </label>
+        {% endif %}
+      </li>
+
+      <li class="mt-6">
+        <input
+          class="btn w-full text-xl"
+          type="submit"
+          value="{{ 'sections.contact_form.send.value' | t }}"
+        />
+      </li>
+    </ul>
+  {% endform %}
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.contact_form.name",
+  "tag": "section"
+}
+{% endschema %}

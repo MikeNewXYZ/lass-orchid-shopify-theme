@@ -103,6 +103,9 @@
     },
     "page": {
       "name": "Page"
+    },
+    "contact_form": {
+      "name": "Contact Form"
     }
   }
 }

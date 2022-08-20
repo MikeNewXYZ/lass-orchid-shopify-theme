@@ -48,6 +48,26 @@
       "description": {
         "heading": "Description"
       }
+    },
+    "contact_form": {
+      "posted_successfully_message": "Thanks for contacting us! We'll get back to you as soon as possible.",
+      "name": {
+        "label": "Name",
+        "placeholder": "John Smith"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "john@smith.com",
+        "error": "Email must be valid."
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Type your message here...",
+        "error": "You must type a message"
+      },
+      "send": {
+        "value": "Send Message"
+      }
     }
   }
 }
