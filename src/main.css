@@ -7,6 +7,11 @@
   display: none;
 }
 
+/* ANCHOR: Button */
+.btn:hover {
+  @apply scale-105 transition-transform duration-300;
+}
+
 /* ANCHOR: Header Navigation */
 .header-nav {
   @apply flex flex-row gap-6 text-xl;
