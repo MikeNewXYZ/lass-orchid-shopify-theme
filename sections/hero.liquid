@@ -1,7 +1,7 @@
 <div class="relative h-[80vh] overflow-hidden border-primary">
   <img
     class="w-full h-full object-cover object-center blur-md scale-105"
-    src="https://placekitten.com/500/700"
+    src="{{ section.settings.background_image | img_url: 'master' }}"
     draggable="false"
   />
 
@@ -37,6 +37,11 @@
   "name": "t:sections.hero.name",
   "tag": "section",
   "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:sections.hero.settings.background_image.label"
+    },
     {
       "type": "text",
       "id": "heading_text",

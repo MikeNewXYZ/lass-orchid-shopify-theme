@@ -98,6 +98,9 @@
     "hero": {
       "name": "Hero",
       "settings": {
+        "background_image": {
+          "label": "Background Image"
+        },
         "heading_text": {
           "label": "Heading Text"
         }
