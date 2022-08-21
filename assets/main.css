@@ -1152,6 +1152,131 @@ html {
   margin-bottom: 0;
 }
 
+.prose-lg {
+  font-size: 1.125rem;
+  line-height: 1.7777778;
+}
+
+.prose-lg :where(p):not(:where([class~="not-prose"] *)) {
+  margin-top: 1.3333333em;
+  margin-bottom: 1.3333333em;
+}
+
+.prose-lg :where([class~="lead"]):not(:where([class~="not-prose"] *)) {
+  font-size: 1.2222222em;
+  line-height: 1.4545455;
+  margin-top: 1.0909091em;
+  margin-bottom: 1.0909091em;
+}
+
+.prose-lg :where(blockquote):not(:where([class~="not-prose"] *)) {
+  margin-top: 1.6666667em;
+  margin-bottom: 1.6666667em;
+  padding-left: 1em;
+}
+
+.prose-lg :where(h1):not(:where([class~="not-prose"] *)) {
+  font-size: 2.6666667em;
+  margin-top: 0;
+  margin-bottom: 0.8333333em;
+  line-height: 1;
+}
+
+.prose-lg :where(h2):not(:where([class~="not-prose"] *)) {
+  font-size: 1.6666667em;
+  margin-top: 1.8666667em;
+  margin-bottom: 1.0666667em;
+  line-height: 1.3333333;
+}
+
+.prose-lg :where(h3):not(:where([class~="not-prose"] *)) {
+  font-size: 1.3333333em;
+  margin-top: 1.6666667em;
+  margin-bottom: 0.6666667em;
+  line-height: 1.5;
+}
+
+.prose-lg :where(h4):not(:where([class~="not-prose"] *)) {
+  margin-top: 1.7777778em;
+  margin-bottom: 0.4444444em;
+  line-height: 1.5555556;
+}
+
+.prose-lg :where(img):not(:where([class~="not-prose"] *)) {
+  margin-top: 1.7777778em;
+  margin-bottom: 1.7777778em;
+}
+
+.prose-lg :where(video):not(:where([class~="not-prose"] *)) {
+  margin-top: 1.7777778em;
+  margin-bottom: 1.7777778em;
+}
+
+.prose-lg :where(figure):not(:where([class~="not-prose"] *)) {
+  margin-top: 1.7777778em;
+  margin-bottom: 1.7777778em;
+}
+
+.prose-lg :where(figure > *):not(:where([class~="not-prose"] *)) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.prose-lg :where(figcaption):not(:where([class~="not-prose"] *)) {
+  font-size: 0.8888889em;
+  line-height: 1.5;
+  margin-top: 1em;
+}
+
+.prose-lg :where(code):not(:where([class~="not-prose"] *)) {
+  font-size: 0.8888889em;
+}
+
+.prose-lg :where(h2 code):not(:where([class~="not-prose"] *)) {
+  font-size: 0.8666667em;
+}
+
+.prose-lg :where(h3 code):not(:where([class~="not-prose"] *)) {
+  font-size: 0.875em;
+}
+
+.prose-lg :where(pre):not(:where([class~="not-prose"] *)) {
+  font-size: 0.8888889em;
+  line-height: 1.75;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border-radius: 0.375rem;
+  padding-top: 1em;
+  padding-right: 1.5em;
+  padding-bottom: 1em;
+  padding-left: 1.5em;
+}
+
+.prose-lg :where(ol):not(:where([class~="not-prose"] *)) {
+  margin-top: 1.3333333em;
+  margin-bottom: 1.3333333em;
+  padding-left: 1.5555556em;
+}
+
+.prose-lg :where(ul):not(:where([class~="not-prose"] *)) {
+  margin-top: 1.3333333em;
+  margin-bottom: 1.3333333em;
+  padding-left: 1.5555556em;
+}
+
+.prose-lg :where(li):not(:where([class~="not-prose"] *)) {
+  margin-top: 0.6666667em;
+  margin-bottom: 0.6666667em;
+}
+
+.prose-lg :where(ol > li):not(:where([class~="not-prose"] *)) {
+  padding-left: 0.4444444em;
+}
+
+.prose-lg :where(ul > li):not(:where([class~="not-prose"] *)) {
+  padding-left: 0.4444444em;
+}
+
 .prose-lg :where(.prose > ul > li p):not(:where([class~="not-prose"] *)) {
   margin-top: 0.8888889em;
   margin-bottom: 0.8888889em;
@@ -1171,6 +1296,66 @@ html {
 
 .prose-lg :where(.prose > ol > li > *:last-child):not(:where([class~="not-prose"] *)) {
   margin-bottom: 1.3333333em;
+}
+
+.prose-lg :where(ul ul, ul ol, ol ul, ol ol):not(:where([class~="not-prose"] *)) {
+  margin-top: 0.8888889em;
+  margin-bottom: 0.8888889em;
+}
+
+.prose-lg :where(hr):not(:where([class~="not-prose"] *)) {
+  margin-top: 3.1111111em;
+  margin-bottom: 3.1111111em;
+}
+
+.prose-lg :where(hr + *):not(:where([class~="not-prose"] *)) {
+  margin-top: 0;
+}
+
+.prose-lg :where(h2 + *):not(:where([class~="not-prose"] *)) {
+  margin-top: 0;
+}
+
+.prose-lg :where(h3 + *):not(:where([class~="not-prose"] *)) {
+  margin-top: 0;
+}
+
+.prose-lg :where(h4 + *):not(:where([class~="not-prose"] *)) {
+  margin-top: 0;
+}
+
+.prose-lg :where(table):not(:where([class~="not-prose"] *)) {
+  font-size: 0.8888889em;
+  line-height: 1.5;
+}
+
+.prose-lg :where(thead th):not(:where([class~="not-prose"] *)) {
+  padding-right: 0.75em;
+  padding-bottom: 0.75em;
+  padding-left: 0.75em;
+}
+
+.prose-lg :where(thead th:first-child):not(:where([class~="not-prose"] *)) {
+  padding-left: 0;
+}
+
+.prose-lg :where(thead th:last-child):not(:where([class~="not-prose"] *)) {
+  padding-right: 0;
+}
+
+.prose-lg :where(tbody td, tfoot td):not(:where([class~="not-prose"] *)) {
+  padding-top: 0.75em;
+  padding-right: 0.75em;
+  padding-bottom: 0.75em;
+  padding-left: 0.75em;
+}
+
+.prose-lg :where(tbody td:first-child, tfoot td:first-child):not(:where([class~="not-prose"] *)) {
+  padding-left: 0;
+}
+
+.prose-lg :where(tbody td:last-child, tfoot td:last-child):not(:where([class~="not-prose"] *)) {
+  padding-right: 0;
 }
 
 .prose-lg :where(.prose > :first-child):not(:where([class~="not-prose"] *)) {
@@ -3701,6 +3886,26 @@ body[dir="rtl"] .checkbox:checked,
   gap: 3.5rem;
 }
 
+.gap-16 {
+  gap: 4rem;
+}
+
+.gap-20 {
+  gap: 5rem;
+}
+
+.gap-36 {
+  gap: 9rem;
+}
+
+.gap-32 {
+  gap: 8rem;
+}
+
+.gap-24 {
+  gap: 6rem;
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
@@ -3804,6 +4009,11 @@ body[dir="rtl"] .checkbox:checked,
   padding-bottom: 2rem;
 }
 
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
 .pb-1 {
   padding-bottom: 0.25rem;
 }
@@ -3814,6 +4024,22 @@ body[dir="rtl"] .checkbox:checked,
 
 .pb-10 {
   padding-bottom: 2.5rem;
+}
+
+.pb-14 {
+  padding-bottom: 3.5rem;
+}
+
+.pb-16 {
+  padding-bottom: 4rem;
+}
+
+.pb-20 {
+  padding-bottom: 5rem;
+}
+
+.pb-24 {
+  padding-bottom: 6rem;
 }
 
 .text-left {
@@ -4220,6 +4446,14 @@ body[dir="rtl"] .checkbox:checked,
 
 .prose-h1\:mb-\[0\.5rem_\!important\] :is(:where(h1):not(:where([class~="not-prose"] *))) {
   margin-bottom: 0.5rem !important;
+}
+
+.prose-h1\:mb-2 :is(:where(h1):not(:where([class~="not-prose"] *))) {
+  margin-bottom: 0.5rem;
+}
+
+.prose-h1\:mb-1 :is(:where(h1):not(:where([class~="not-prose"] *))) {
+  margin-bottom: 0.25rem;
 }
 
 @media (min-width: 640px) {
@@ -4712,6 +4946,11 @@ body[dir="rtl"] .checkbox:checked,
 
   .md\:justify-end {
     justify-content: flex-end;
+  }
+
+  .md\:py-10 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
   }
 
   .md\:text-5xl {

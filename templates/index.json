@@ -1,5 +1,5 @@
 {
-  "wrapper": ".flex.flex-col.gap-12.pb-10",
+  "wrapper": ".flex.flex-col.gap-20.pb-20",
   "sections": {
     "hero": {
       "type": "hero",
@@ -61,6 +61,21 @@
         "button"
       ]
     },
+    "richtext": {
+      "type": "richtext",
+      "blocks": {
+        "heading": {
+          "type": "heading"
+        },
+        "richtext": {
+          "type": "richtext"
+        }
+      },
+      "block_order": [
+        "heading",
+        "richtext"
+      ]
+    },
     "newsletter": {
       "type": "newsletter"
     }
@@ -68,6 +83,7 @@
   "order": [
     "hero",
     "image_and_text_1",
+    "richtext",
     "image_and_text_2",
     "newsletter"
   ]

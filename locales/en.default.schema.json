@@ -29,6 +29,27 @@
     }
   },
   "sections": {
+    "richtext": {
+      "name": "Richtext",
+      "blocks": {
+        "heading": {
+          "name": "Heading",
+          "settings": {
+            "heading_text": {
+              "label": "Heading Text"
+            }
+          }
+        },
+        "richtext": {
+          "name": "Richtext",
+          "settings": {
+            "richtext": {
+              "label": "Richtext"
+            }
+          }
+        }
+      }
+    },
     "header": {
       "name": "Header",
       "settings": {

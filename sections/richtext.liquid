@@ -1,0 +1,63 @@
+<div class="bg-base-200">
+  <div class="container py-6 md:py-10 prose prose-lg md:prose-xl text-center">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'heading' %}
+          <h1 style="margin-bottom: 1rem;">
+            {{ block.settings.heading_text }}
+          </h1>
+        {% when 'richtext' %}
+          <div>
+            {{ block.settings.richtext }}
+          </div>
+      {% endcase %}
+    {% endfor %}
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "t:sections.richtext.name",
+  "tag": "section",
+  "blocks": [
+    {
+      "name": "t:sections.richtext.blocks.heading.name",
+      "type": "heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading_text",
+          "label": "t:sections.richtext.blocks.heading.settings.heading_text.label",
+          "default": "Bonjour, mate!"
+        }
+      ]
+    },
+    {
+      "name": "t:sections.richtext.blocks.richtext.name",
+      "type": "richtext",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "richtext",
+          "label": "t:sections.richtext.blocks.richtext.settings.richtext.label",
+          "default": "<p><b>Lorem ipsum dolor sit amet</b> consectetur adipisicing elit. Accusamus, vero quasi vitae iusto asperiores ad inventore id delectus! Rem iste dolorem, reprehenderit fuga fugiat ipsa quisquam suscipit numquam corrupti iusto!</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.richtext.name",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "richtext"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
