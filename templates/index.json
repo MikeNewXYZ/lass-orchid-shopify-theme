@@ -76,6 +76,29 @@
         "richtext"
       ]
     },
+    "highlights": {
+      "type": "highlights",
+      "blocks": {
+        "highlight_1": {
+          "type": "highlight"
+        },
+        "highlight_2": {
+          "type": "highlight"
+        },
+        "highlight_3": {
+          "type": "highlight"
+        },
+        "highlight_4": {
+          "type": "highlight"
+        }
+      },
+      "block_order": [
+        "highlight_1",
+        "highlight_2",
+        "highlight_3",
+        "highlight_4"
+      ]
+    },
     "newsletter": {
       "type": "newsletter"
     }
@@ -85,6 +108,7 @@
     "image_and_text_1",
     "richtext",
     "image_and_text_2",
+    "highlights",
     "newsletter"
   ]
 }

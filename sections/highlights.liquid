@@ -1,0 +1,62 @@
+<ul class="container grid gap-8 xl:gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'highlight' %}
+        <li class="w-full bg-base-200 text-center">
+          <h1 class="p-4 bg-secondary text-secondary-content text-4xl font-bold break-words">
+            {{ block.settings.heading_text }}
+          </h1>
+      
+          <div class="text-xl p-4 pb-6">
+            {{ block.settings.richtext }}
+          </div>
+        </li>
+    {% endcase %}
+  {% endfor %}
+</ul>
+
+{% schema %}
+{
+  "name": "t:sections.highlights.name",
+  "tag": "section",
+  "blocks": [
+    {
+      "name": "t:sections.highlights.blocks.highlight.name",
+      "type": "highlight",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading_text",
+          "label": "t:sections.highlights.blocks.highlight.settings.heading_text.label",
+          "default": "Customer Service"
+        },
+        {
+          "type": "richtext",
+          "id": "richtext",
+          "label": "t:sections.highlights.blocks.highlight.settings.richtext.label",
+          "default": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia obcaecati dolorem magnam nihil voluptatum laudantium consequuntur dolores iste eligendi dignissimos, sit temporibus fuga cumque distinctio ipsam aut suscipit officia quasi.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.highlights.name",
+      "blocks": [
+        {
+          "type": "highlight"
+        },
+        {
+          "type": "highlight"
+        },
+        {
+          "type": "highlight"
+        },
+        {
+          "type": "highlight"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
