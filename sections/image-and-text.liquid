@@ -1,6 +1,6 @@
-<div class="container lg:h-[40rem] grid lg:grid-cols-2 gap-8 p-4">
+<div class="container lg:h-[40rem] grid lg:grid-cols-2 gap-8 xl:gap-20 p-4">
   <img
-    class="lg:h-full aspect-square lg:aspect-auto w-full object-cover object-center {% if section.settings.order == '1' %} lg:order-1 {% endif %}"
+    class="min-h-0 lg:h-full aspect-square lg:aspect-auto w-full object-cover object-center {% if section.settings.order == '1' %} lg:order-1 {% endif %}"
     src="{{ section.settings.main_image | img_url: 'grande' }}"
     draggable="false"
   />
