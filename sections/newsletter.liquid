@@ -1,5 +1,10 @@
-<div class="bg-base-200 py-8">
-  <div class="container text-center">
+<div
+  class="bg-base-200 py-8 xyz-in xyz-paused-all"
+  xyz="fade down stagger"
+  x-data
+  x-intersect.threshold.20.once="$el.classList.remove('xyz-paused-all')"
+>
+  <div class="container text-center xyz-nested">
     {% if section.settings.heading_text != blank %}
       <h1 class="text-3xl font-semibold">
         {{ section.settings.heading_text }}
@@ -14,7 +19,7 @@
   </div>
 
 
-  {% form 'customer' %}
+  {% form 'customer', class: 'xyz-nested' %}
     {% if form.errors contains 'email' %}
       {% assign input_style = 'input-error' %}
     {% else %}

@@ -1,5 +1,10 @@
 {% if paginate.pages > 1 %}
-  <ul class="btn-group">
+  <ul
+    class="btn-group xyz-in xyz-paused"
+    xyz="fade down"
+    x-data
+    x-intersect.once="$el.classList.remove('xyz-paused')"
+  >
     <a
       {% if paginate.previous.is_link %}
         class="btn"

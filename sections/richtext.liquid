@@ -1,13 +1,18 @@
 <div class="bg-base-200">
-  <div class="container py-6 md:py-10 prose prose-lg md:prose-xl text-center">
+  <div
+    class="container py-6 md:py-10 prose prose-lg md:prose-xl text-center xyz-in xyz-paused-all"
+    xyz="fade down stagger"
+    x-data
+    x-intersect.threshold.20.once="$el.classList.remove('xyz-paused-all')"
+  >
     {% for block in section.blocks %}
       {% case block.type %}
         {% when 'heading' %}
-          <h1 style="margin-bottom: 1rem;">
+          <h1 class="xyz-nested" style="margin-bottom: 1rem;">
             {{ block.settings.heading_text }}
           </h1>
         {% when 'richtext' %}
-          <div>
+          <div class="xyz-nested">
             {{ block.settings.richtext }}
           </div>
       {% endcase %}

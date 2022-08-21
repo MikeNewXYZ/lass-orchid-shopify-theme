@@ -1,7 +1,12 @@
 <div class="container py-4">
-  <nav class="footer">
+  <nav
+    class="footer xyz-in xyz-paused-all"
+    xyz="fade down stagger"
+    x-data
+    x-intersect.threshold.20.once="$el.classList.remove('xyz-paused-all')"
+  >
     {% for link in section.settings.footer_nav_link_list.links %}
-      <div>
+      <div class="xyz-nested">
         <a
           class="footer-title"
           href="{{ link.url }}"
@@ -21,7 +26,12 @@
     {% endfor %}
   </nav>
 
-  <div class="flex gap-2 mt-12">
+  <div
+    class="flex gap-2 mt-12 xyz-in xyz-paused"
+    xyz="fade down"
+    x-data
+    x-intersect.threshold.20.once="$el.classList.remove('xyz-paused')"
+  >
     <p>&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: '/' }}</p>
     <p>{{ powered_by_link }}</p>
   </div>

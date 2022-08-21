@@ -1,11 +1,16 @@
-<div class="relative h-[80vh] overflow-hidden border-primary">
+<div
+  class="relative h-[80vh] overflow-hidden border-primary xyz-in xyz-paused-all"
+  xyz="fade down stagger"
+  x-data
+  x-intersect.threshold.20.once="$el.classList.remove('xyz-paused-all')"
+>
   <img
-    class="w-full h-full object-cover object-center blur-md scale-105"
+    class="w-full h-full object-cover object-center blur-md scale-105 xyz-nested"
     src="{{ section.settings.background_image | img_url: 'master' }}"
     draggable="false"
   />
 
-  <div class="container absolute inset-0 h-full flex justify-center items-center">
+  <div class="container absolute inset-0 h-full flex justify-center items-center xyz-nested">
     <div class="w-full max-w-lg bg-base-200 shadow-lg">
       <h1 class="p-4 text-center text-4xl font-semibold bg-secondary text-secondary-content">
         {{ section.settings.heading_text }}

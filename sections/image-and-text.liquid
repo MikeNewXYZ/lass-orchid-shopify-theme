@@ -1,11 +1,16 @@
-<div class="container lg:h-[40rem] grid lg:grid-cols-2 gap-8 xl:gap-20 p-4">
+<div
+  class="container lg:h-[40rem] grid lg:grid-cols-2 gap-8 xl:gap-20 p-4 xyz-in xyz-paused-all"
+  xyz="fade down stagger"
+  x-data
+  x-intersect.threshold.20.once="$el.classList.remove('xyz-paused-all')"
+>
   <img
-    class="min-h-0 lg:h-full aspect-square lg:aspect-auto w-full object-cover object-center {% if section.settings.order == '1' %} lg:order-1 {% endif %}"
+    class="xyz-nested min-h-0 lg:h-full aspect-square lg:aspect-auto w-full object-cover object-center {% if section.settings.order == '1' %} lg:order-1 {% endif %}"
     src="{{ section.settings.main_image | img_url: 'grande' }}"
     draggable="false"
   />
 
-  <div class="flex flex-col justify-center lg:mb-8 gap-4 prose md:prose-xl prose-h1:mb-[0.5rem_!important]">
+  <div class="xyz-nested flex flex-col justify-center lg:mb-8 gap-4 prose md:prose-xl prose-h1:mb-[0.5rem_!important]">
     {% for block in section.blocks %}
       {% case block.type %}
         {% when 'heading' %}

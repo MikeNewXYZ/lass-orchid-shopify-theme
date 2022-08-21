@@ -24,7 +24,9 @@
 
     {%- liquid render 'head-settings' -%}
 
+    {{ 'animxyz.core.min.css' | asset_url | stylesheet_tag }}
     {{ 'main.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'alpinejs-intersect.min.js' | asset_url }}" defer></script>
     <script src="{{ 'alpinejs.min.js' | asset_url }}" defer></script>
     <script src="{{ 'cart.js' | asset_url }}"></script>
     <script src="{{ 'formatMoney.js' | asset_url }}"></script>
