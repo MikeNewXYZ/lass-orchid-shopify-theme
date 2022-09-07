@@ -1,13 +1,13 @@
 <ul
-  class="container grid gap-8 xl:gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xyz-none xyz-in xyz-paused-all"
-  xyz="fade down stagger"
+  class="container grid gap-8 xl:gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
   x-data
-  x-intersect.threshold.20.once="$el.classList.remove('xyz-paused-all')"
+  x-cloak
+  x-init="animateOnView($el, [...$el.children], ['opacity-0'], ['animate__animated', 'animate__fadeInUp'])"
 >
   {% for block in section.blocks %}
     {% case block.type %}
       {% when 'highlight' %}
-        <li class="w-full bg-base-200 text-center xyz-nested">
+        <li class="w-full bg-base-200 text-center" style="animation-delay: {{ forloop.index0 | times: 0.1 }}s;">
           <h1 class="p-4 bg-secondary text-secondary-content text-4xl font-bold break-words">
             {{ block.settings.heading_text }}
           </h1>

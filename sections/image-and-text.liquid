@@ -1,16 +1,31 @@
 <div
-  class="container lg:h-[40rem] grid lg:grid-cols-2 gap-8 xl:gap-20 p-4 xyz-in xyz-paused-all"
-  xyz="fade down stagger"
+  class="container lg:h-[40rem] grid lg:grid-cols-2 gap-8 xl:gap-20 p-4 overflow-hidden"
   x-data
-  x-intersect.threshold.20.once="$el.classList.remove('xyz-paused-all')"
+  x-cloak
 >
   <img
-    class="xyz-nested min-h-0 lg:h-full aspect-square lg:aspect-auto w-full object-cover object-center {% if section.settings.order == '1' %} lg:order-1 {% endif %}"
+    class="min-h-0 lg:h-full aspect-square lg:aspect-auto w-full object-cover object-center {% if section.settings.order == '1' %} lg:order-1 {% endif %}"
     src="{{ section.settings.main_image | img_url: 'grande' }}"
     draggable="false"
+    x-data
+    x-init="animateOnView(
+      $el,
+      [$el],
+      ['opacity-0'],
+      ['animate__animated',`{%- if section.settings.order == '1' -%} animate__fadeInRight {%- else -%} animate__fadeInLeft {%- endif -%}`]
+    )"
   />
 
-  <div class="xyz-nested flex flex-col justify-center lg:mb-8 gap-4 prose md:prose-xl prose-h1:mb-[0.5rem_!important]">
+  <div
+    class="flex flex-col justify-center lg:mb-8 gap-4 prose md:prose-xl prose-h1:mb-[0.5rem_!important]"
+    x-data
+    x-init="animateOnView(
+      $el,
+      [$el],
+      ['opacity-0'],
+      ['animate__animated',`{%- if section.settings.order == '1' -%} animate__fadeInLeft {%- else -%} animate__fadeInRight {%- endif -%}`]
+    )"
+  >
     {% for block in section.blocks %}
       {% case block.type %}
         {% when 'heading' %}
@@ -32,7 +47,6 @@
     {% endfor %}
   </div>
 </div>
-
 
 {% schema %}
 {

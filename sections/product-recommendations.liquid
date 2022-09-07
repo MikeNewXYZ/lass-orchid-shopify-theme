@@ -1,9 +1,26 @@
-<div class="container" x-data="productRecommendation">
-  <h1 class="text-center text-4xl font-semibold">
+<div
+  class="container"
+  x-data="productRecommendation"
+  x-cloak
+  x-init="animateOnView(
+    $el,
+    [$refs.heading, $refs.productRecommendation],
+    ['opacity-0'],
+    ['animate__animated', 'animate__fadeInUp']
+  )"
+>
+  <h1
+    class="text-center text-4xl font-semibold"
+    x-ref="heading"
+  >
     {{ section.settings.heading_text }}
   </h1>
 
-  <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-8">
+  <div
+    class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-8"
+    style="animation-delay: 0.25s;"
+    x-ref="productRecommendation"
+  >
     <template x-for="product in productRecommendation">
       <a
         class="relative w-full h-96 hover:scale-105 transition-transform"

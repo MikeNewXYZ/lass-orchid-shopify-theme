@@ -1,10 +1,10 @@
 <div
-  class="bg-base-200 py-8 xyz-in xyz-paused-all"
-  xyz="fade down stagger"
+  class="bg-base-200 py-8"
   x-data
-  x-intersect.threshold.20.once="$el.classList.remove('xyz-paused-all')"
+  x-cloak
+  x-init="animateOnView($el, [$el], ['opacity-0'], ['animate__animated', 'animate__fadeInUp'])"
 >
-  <div class="container text-center xyz-nested">
+  <div class="container text-center">
     {% if section.settings.heading_text != blank %}
       <h1 class="text-3xl font-semibold">
         {{ section.settings.heading_text }}
@@ -19,7 +19,7 @@
   </div>
 
 
-  {% form 'customer', class: 'xyz-nested' %}
+  {% form 'customer' %}
     {% if form.errors contains 'email' %}
       {% assign input_style = 'input-error' %}
     {% else %}

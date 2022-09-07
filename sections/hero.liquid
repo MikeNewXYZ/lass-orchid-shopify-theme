@@ -1,16 +1,21 @@
 <div
-  class="relative h-[80vh] overflow-hidden border-primary xyz-in xyz-paused-all"
-  xyz="fade down stagger"
+  class="relative h-[80vh] overflow-hidden border-primary"
   x-data
-  x-intersect.threshold.20.once="$el.classList.remove('xyz-paused-all')"
+  x-cloak
+  x-init="animateOnView($el, [$el], ['opacity-0'], ['animate__animated', 'animate__fadeIn'])"
+  style="--animate-duration: 2s;"
 >
   <img
-    class="w-full h-full object-cover object-center blur-md scale-105 xyz-nested"
+    class="w-full h-full object-cover object-center blur-md scale-105"
     src="{{ section.settings.background_image | img_url: 'master' }}"
     draggable="false"
   />
 
-  <div class="container absolute inset-0 h-full flex justify-center items-center xyz-nested">
+  <div
+    class="container absolute inset-0 h-full flex justify-center items-center"
+    x-data
+    x-init="animateOnView($el, [$el], ['opacity-0'], ['animate__animated', 'animate__zoomIn'], {threshold: 0})"
+  >
     <div class="w-full max-w-lg bg-base-200 shadow-lg">
       <h1 class="p-4 text-center text-4xl font-semibold bg-secondary text-secondary-content">
         {{ section.settings.heading_text }}

@@ -1,9 +1,9 @@
 {% if paginate.pages > 1 %}
   <ul
-    class="btn-group xyz-in xyz-paused"
-    xyz="fade down"
+    class="btn-group"
     x-data
-    x-intersect.once="$el.classList.remove('xyz-paused')"
+    x-cloak
+    x-init="animateOnView($el, [$el], ['opacity-0'], ['animate__animated', 'animate__fadeInUp'])"
   >
     <a
       {% if paginate.previous.is_link %}
